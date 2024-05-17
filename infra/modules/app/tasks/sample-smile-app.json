@@ -1,0 +1,52 @@
+{
+    "containerDefinitions": [
+        {
+            "name": "sample-smile-app",
+            "image": "${image}",
+            "cpu": 256,
+            "portMappings": [
+                {
+                    "name": "http",
+                    "containerPort": 3001,
+                    "hostPort": 3001,
+                    "protocol": "tcp",
+                    "appProtocol": "http"
+                }
+            ],
+            "essential": true,
+            "command": [
+                "npm",
+                "run",
+                "start"
+            ],
+            "healthCheck": {
+                "Command": [
+                    "CMD-SHELL",
+                    "curl -f http://0.0.0.0:3001 || exit 1"
+                ],
+                "Interval": 5,
+                "Timeout": 2,
+                "Retries": 3
+            },
+            "environment": [],
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-create-group": "true",
+                    "awslogs-group": "/ecs/smile/sample-smile-app",
+                    "awslogs-region": "eu-central-1",
+                    "awslogs-stream-prefix": "ecs"
+                }
+            }
+        }
+    ],
+    "family": "sample-smile-app",
+    "cpu": "256",
+    "memory": "512",
+    "networkMode": "awsvpc",
+    "status": "ACTIVE",
+    "runtimePlatform": {
+        "cpuArchitecture": "X86_64",
+        "operatingSystemFamily": "LINUX"
+    }
+}

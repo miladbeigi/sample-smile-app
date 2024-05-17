@@ -1,0 +1,7 @@
+# Ignore all files and directories except the ones specified below
+*
+
+# Allow specific files and directories
+!server.js
+!package.json
+!package-lock.json

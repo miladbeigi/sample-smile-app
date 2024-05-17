@@ -4,6 +4,9 @@ TAG := latest
 build:
 	docker build -t sample-smile-app:$(TAG) .
 
+run:
+	docker compose up -d
+
 bump:
 	VERSION=$$(cat VERSION | xargs); \
 	MAJOR=$$(echo $${VERSION} | cut -d. -f1); \

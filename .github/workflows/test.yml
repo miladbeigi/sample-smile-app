@@ -29,18 +29,18 @@ jobs:
         with:
           terraform_version: 1.5.4
 
-      - name: Initialize Terraform
+      - name: Initialize
         id: init
         working-directory: infra
         run: |
           terraform init
 
-      - name: format
+      - name: Format
         working-directory: infra
         run: |
           terraform fmt -check -diff -recursive .
 
-      - name: Validate Terraform
+      - name: Validate
         id: validate
         working-directory: infra
         run: |

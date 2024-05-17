@@ -1,3 +1,8 @@
+locals {
+  sample-smile-app = jsondecode(templatefile("./tasks/sample-smile-app.json", {
+    image = var.image
+  }))
+}
 module "network" {
   source               = "./modules/core-network"
   name                 = var.vpc-name
@@ -14,12 +19,13 @@ module "ecs" {
 }
 
 module "app" {
-  source         = "./modules/app"
-  cluster_arn    = module.ecs.cluster_arn
-  cluster_name   = module.ecs.cluster_name
-  vpc_id         = module.network.vpc_id
-  public_subnets = module.network.public_subnets
-  desired_count  = var.desired_count
-  max_capacity   = var.max_capacity
-  image          = var.image
+  source                  = "./modules/app"
+  cluster_arn             = module.ecs.cluster_arn
+  cluster_name            = module.ecs.cluster_name
+  vpc_id                  = module.network.vpc_id
+  public_subnets          = module.network.public_subnets
+  desired_count           = var.desired_count
+  max_capacity            = var.max_capacity
+  image                   = var.image
+  service_task_definition = local.sample-smile-app
 }

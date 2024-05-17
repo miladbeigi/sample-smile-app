@@ -1,20 +1,18 @@
 locals {
-  sample-smile-app = jsondecode(templatefile("${path.module}/tasks/sample-smile-app.json", {
-    image = var.image
-  }))
+  task_definition = var.service_task_definition
 }
 
 resource "aws_ecs_task_definition" "smile-app" {
-  network_mode          = local.sample-smile-app.networkMode
-  cpu                   = local.sample-smile-app.cpu
-  memory                = local.sample-smile-app.memory
+  network_mode          = local.task_definition.networkMode
+  cpu                   = local.task_definition.cpu
+  memory                = local.task_definition.memory
   execution_role_arn    = aws_iam_role.fargate-role.arn
   task_role_arn         = aws_iam_role.fargate-role.arn
-  family                = local.sample-smile-app.family
-  container_definitions = jsonencode(local.sample-smile-app.containerDefinitions)
+  family                = local.task_definition.family
+  container_definitions = jsonencode(local.task_definition.containerDefinitions)
   runtime_platform {
-    operating_system_family = local.sample-smile-app.runtimePlatform.operatingSystemFamily
-    cpu_architecture        = local.sample-smile-app.runtimePlatform.cpuArchitecture
+    operating_system_family = local.task_definition.runtimePlatform.operatingSystemFamily
+    cpu_architecture        = local.task_definition.runtimePlatform.cpuArchitecture
   }
   requires_compatibilities = ["FARGATE"]
 }

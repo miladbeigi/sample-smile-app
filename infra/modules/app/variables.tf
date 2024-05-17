@@ -31,3 +31,5 @@ variable "max_capacity" {
   description = "The maximum number of tasks"
   type        = number
 }
+
+variable "service_task_definition" {}

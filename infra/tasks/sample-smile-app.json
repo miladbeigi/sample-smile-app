@@ -32,9 +32,8 @@
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
-                    "awslogs-create-group": "true",
                     "awslogs-group": "/ecs/smile/sample-smile-app",
-                    "awslogs-region": "eu-central-1",
+                    "awslogs-region": "${region}",
                     "awslogs-stream-prefix": "ecs"
                 }
             }

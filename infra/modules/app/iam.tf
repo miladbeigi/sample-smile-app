@@ -30,11 +30,16 @@ resource "aws_iam_role_policy" "ecs-policy" {
     Version = "2012-10-17"
     Statement = [
       {
-        Action = [
-          "logs:CreateLogGroup"
+        "Effect" : "Allow",
+        "Action" : [
+          "logs:CreateLogGroup",
+          "logs:CreateLogStream",
+          "logs:PutLogEvents",
+          "logs:DescribeLogStreams"
+        ],
+        "Resource" : [
+          "${aws_cloudwatch_log_group.smile.arn}",
         ]
-        Effect   = "Allow"
-        Resource = "*"
       }
     ]
   })

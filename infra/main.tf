@@ -1,8 +1,10 @@
 locals {
   sample-smile-app = jsondecode(templatefile("./tasks/sample-smile-app.json", {
-    image = var.image
+    image  = var.image
+    region = var.region
   }))
 }
+
 module "network" {
   source               = "./modules/core-network"
   name                 = var.vpc-name

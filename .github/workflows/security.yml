@@ -1,4 +1,4 @@
-name: Test
+name: Security
 on:
   push:
     branches:
@@ -10,7 +10,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
+      - name: Get the version
+        run: |
+            VERSION=$(cat app/VERSION | tr -d '\n') 
+            echo VERSION=$VERSION >> $GITHUB_ENV
+
       - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/node@master
+        uses: snyk/actions/docker@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+            image: miladbeigi/sample-smile-app:$VERSION
+            args: --severity-threshold=critical

@@ -15,7 +15,7 @@ resource "aws_security_group_rule" "app-ingress" {
   to_port                  = 3001
   protocol                 = "tcp"
   security_group_id        = aws_security_group.app.id
-  source_security_group_id = "aws_security_group.smile-lb-sg.id"
+  source_security_group_id = aws_security_group.smile-lb-sg.id
 }
 
 resource "aws_security_group_rule" "app-egress" {

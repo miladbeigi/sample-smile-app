@@ -7,17 +7,17 @@ locals {
 
 module "network" {
   source               = "./modules/core-network"
-  name                 = var.vpc-name
-  vpc-cidr             = var.vpc-cidr
+  name                 = var.vpc_name
+  vpc_cidr             = var.vpc_cidr
   region               = var.region
-  private-subnets-cidr = var.private-subnets-cidr
-  public-subnets-cidr  = var.public-subnets-cidr
-  enbable-nat-gateway  = var.enbable-nat-gateway
+  private_subnets_cidr = var.private_subnets_cidr
+  public_subnets_cidr  = var.public_subnets_cidr
+  enbable_nat_gateway  = var.enbable_nat_gateway
 }
 
 module "ecs" {
   source       = "./modules/ecs"
-  cluster_name = var.cluster-name
+  cluster_name = var.cluster_name
 }
 
 module "app" {

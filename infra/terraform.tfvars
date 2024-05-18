@@ -5,5 +5,5 @@ public-subnets-cidr  = ["10.0.101.0/24", "10.0.102.0/24"]
 region               = "eu-west-1"
 cluster-name         = "smile-cluster"
 desired_count        = 1
-max_capacity         = 1
-image                = "miladbeigi/sample-smile-app:0.0.4"
+max_capacity         = 3
+image                = "miladbeigi/sample-smile-app:0.0.5"

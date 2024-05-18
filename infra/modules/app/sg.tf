@@ -9,16 +9,16 @@ resource "aws_security_group" "smile-lb-sg" {
   vpc_id = var.vpc_id
 }
 
-resource "aws_security_group_rule" "http-ingress" {
-  type              = "ingress"
-  from_port         = 3001
-  to_port           = 3001
-  protocol          = "tcp"
-  security_group_id = aws_security_group.app.id
-  cidr_blocks       = ["0.0.0.0/0"]
+resource "aws_security_group_rule" "app-ingress" {
+  type                     = "ingress"
+  from_port                = 3001
+  to_port                  = 3001
+  protocol                 = "tcp"
+  security_group_id        = aws_security_group.app.id
+  source_security_group_id = "aws_security_group.smile-lb-sg.id"
 }
 
-resource "aws_security_group_rule" "egress" {
+resource "aws_security_group_rule" "app-egress" {
   type              = "egress"
   from_port         = 0
   to_port           = 0

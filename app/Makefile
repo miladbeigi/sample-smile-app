@@ -1,10 +1,9 @@
-.PHONY: build bump publish clean help
 TAG := latest
 
 build:
 	docker build -t sample-smile-app:$(TAG) .
 
-run:
+run: build
 	docker compose up -d
 
 bump:

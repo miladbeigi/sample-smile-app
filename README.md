@@ -24,7 +24,6 @@ To run the application locally without Docker, you can use the following command
 ```bash
 cd app && npm install && npm start
 ```
-
 ## Part 3: Deployment on Production Environment
 
 ### Part 3.1: Kubernetes
@@ -62,3 +61,32 @@ This workflow runs some minimal tests for the application and infrastructure. Fo
 ### security.yml
 
 This workflow checks the docker image for vulnerabilities using Snyk.
+
+#  Recomendations
+
+* **App**
+    * Versioning: Use more effective versioning for the application rather than using a single file.
+    * Adding tests for the application.
+    * Adding metrics and monitoring for the key API endpoints.
+    * Adding a pipeline to automate the deployment process on different environments.
+    * Define separate docker networks in docker compose for the application.
+    * Resolve possible security vulnerabilities in the application. (e.g. using Snyk or other tools)
+    * Define user in Dockerfile.
+
+* **CI/CD**
+    * Connect GitHub Actions to the AWS using GitHub OIDC.
+    * Add a pipeline to automate the process of building the docker image and pushing it to docker hub. (Or any other container registry like AWS ECR)
+    * Use GitHub Actions to deploy the application to the AWS ECS. 
+
+* **Infra**
+    * Use remote state for the terraform state file. (S3 and DynamoDB)
+    * Provide more variables to customize the deployment on AWS ECS.
+    * Separate repositories for core network, and ECS Cluster. Only put application infra inside this repository.
+    * Check the `terraform plan` output before applying the changes.
+    * Add unit tests for the critical modules.
+
+* **Kubernetes**
+    * Use Helm to manage the application deployment on Kubernetes.
+    * Use Kubernetes ConfigMaps to store non-sensitive configuration data.
+    * Use Kubernetes specific cloud provider ingress to expose the application. (e.g. AWS ALB Ingress Controller)
+    * Use Kubernetes liveness and readiness probes to monitor the application.

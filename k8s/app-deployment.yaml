@@ -1,7 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
   labels:
     name: sample-smile-app
   name: sample-smile-app
@@ -21,9 +20,8 @@ spec:
         name: sample-smile-app
     spec:
       containers:
-        - env:
+        - name: sample-smile-app
           image: miladbeigi/sample-smile-app:0.0.5
-          name: sample-smile-app
           ports:
             - containerPort: 3001
           livenessProbe:

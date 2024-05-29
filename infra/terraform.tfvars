@@ -2,6 +2,7 @@ vpc_name             = "smile-network"
 vpc_cidr             = "10.0.0.0/16"
 private_subnets_cidr = ["10.0.1.0/24", "10.0.2.0/24"]
 public_subnets_cidr  = ["10.0.101.0/24", "10.0.102.0/24"]
+enbable_nat_gateway  = true
 region               = "eu-west-1"
 cluster_name         = "smile-cluster"
 desired_count        = 1

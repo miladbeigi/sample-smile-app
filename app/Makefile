@@ -1,4 +1,4 @@
-TAG := latest
+TAG := $(or $(TAG),latest)
 
 build:
 	docker build -t sample-smile-app:$(TAG) .

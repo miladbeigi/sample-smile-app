@@ -20,5 +20,4 @@ app.use((req, res) => {
 // Activate the server
 app.listen(port, () => {
     console.log(`Server listening at http://0.0.0.0:${port}`);
-
 });

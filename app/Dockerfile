@@ -3,7 +3,7 @@ FROM node:20.13.1-alpine as build
 WORKDIR /app
 
 COPY package.json package-lock.json ./
-RUN npm ci --only=production
+RUN npm ci --omit=dev 
 
 COPY server.js ./server.js
 

@@ -7,6 +7,11 @@ variable "cluster_arn" {
   type        = string
 }
 
+variable "private_subnets" {
+  description = "The private subnets"
+  type        = list(string)
+}
+
 variable "public_subnets" {
   description = "The public subnets"
   type        = list(string)

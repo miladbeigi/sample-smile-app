@@ -25,6 +25,7 @@ module "app" {
   cluster_arn             = module.ecs.cluster_arn
   cluster_name            = module.ecs.cluster_name
   vpc_id                  = module.network.vpc_id
+  private_subnets         = module.network.private_subnets
   public_subnets          = module.network.public_subnets
   desired_count           = var.desired_count
   max_capacity            = var.max_capacity

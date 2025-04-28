@@ -1,4 +1,4 @@
-FROM node:20.13.1-alpine as build
+FROM node:20.19.1-alpine as build
 
 WORKDIR /app
 
@@ -7,7 +7,7 @@ RUN npm ci --omit=dev
 
 COPY server.js ./server.js
 
-FROM node:20.13.1-alpine
+FROM node:20.19.1-alpine
 
 RUN apk add --no-cache curl
 
